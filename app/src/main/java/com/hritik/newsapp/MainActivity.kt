@@ -2,10 +2,8 @@ package com.hritik.newsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.hritik.newsapp.Adapter.NewsAdapter
 import com.hritik.newsapp.databinding.ActivityMainBinding
 import com.hritik.newsapp.view.MainViewModel
@@ -24,11 +22,9 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        Log.d("response", "test")
 
         val newsAdapter = NewsAdapter()
         viewModel.news.observe(this@MainActivity) {
-            Log.d("response", it.size.toString())
             newsAdapter.differ.submitList(it)
         }
 
@@ -44,12 +40,8 @@ class MainActivity : AppCompatActivity() {
             if (loading) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
-                newsAdapter.differ.submitList(viewModel.news.value)
-
-
                 binding.progressBar.visibility = View.INVISIBLE
                 val value = viewModel.news.value
-//                Log.d("response" , value.toString())
             }
 
 

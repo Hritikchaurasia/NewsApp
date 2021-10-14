@@ -9,5 +9,6 @@ data class Article(
         val description: String,
         val publishedAt: String,
         @PrimaryKey val title: String,
-        val urlToImage: String
+        val urlToImage: String,
+        var read: Boolean = false
 )

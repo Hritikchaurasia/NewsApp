@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsApp</string>
+    <string name="LOCAL_NOTIFICATION">Local_notification</string>
 </resources>

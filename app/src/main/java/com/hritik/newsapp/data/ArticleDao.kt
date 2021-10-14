@@ -1,9 +1,6 @@
 package com.hritik.newsapp.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 
@@ -18,5 +15,11 @@ interface ArticleDao {
 
     @Query("DELETE FROM articles")
     suspend fun deleteAllArticles()
+
+    @Query("DELETE FROM articles WHERE title = :title")
+    suspend fun deleteArticle(title: String)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateArticle(article: Article)
 
 }

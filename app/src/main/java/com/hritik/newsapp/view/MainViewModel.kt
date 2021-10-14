@@ -22,4 +22,18 @@ class MainViewModel @Inject constructor(
    private val repository: NewsRepository
 ) :ViewModel() {
     val articles = repository.getArticles().asLiveData()
+    val isLoading : MutableLiveData<Boolean> = MutableLiveData(false);
+
+    init {
+        setLoading()
+    }
+    private fun setLoading(){
+        viewModelScope.launch {
+            delay(2000L)
+            isLoading.value = true
+            delay(2000L)
+            isLoading.value = false
+        }
+    }
+
 }

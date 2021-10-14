@@ -1,6 +1,9 @@
 package com.hritik.newsapp.di
 
+import android.app.Application
+import androidx.room.Room
 import com.hritik.newsapp.api.NewsApi
+import com.hritik.newsapp.database.ArticleDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,4 +30,10 @@ object AppModule {
     fun provideNewsApi(retrofit: Retrofit) : NewsApi = retrofit.create(NewsApi::class.java)
 
 
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application) : ArticleDatabase =
+        Room.databaseBuilder(app, ArticleDatabase::class.java, "articles_database")
+            .build()
 }
+

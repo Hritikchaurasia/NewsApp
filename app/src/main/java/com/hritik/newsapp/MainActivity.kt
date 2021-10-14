@@ -2,6 +2,7 @@ package com.hritik.newsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.hritik.newsapp.Adapter.NewsAdapter
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val newsAdapter = NewsAdapter()
-        viewModel.news.observe(this@MainActivity) {
-            newsAdapter.differ.submitList(it)
+        viewModel.articles.observe(this@MainActivity) {
+            newsAdapter.differ.submitList(it.data)
         }
 
         binding.apply {
@@ -35,16 +36,4 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        viewModel.isLoading.observe(this@MainActivity) { loading ->
-
-            if (loading) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.INVISIBLE
-                val value = viewModel.news.value
-            }
-
-
-        }
-    }
-}
+}}

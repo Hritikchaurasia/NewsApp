@@ -56,17 +56,21 @@ class MainActivity : AppCompatActivity() {
                 when(direction){
                     ItemTouchHelper.LEFT ->{
                         Log.d("swipe","left")
+                        viewModel.readArticle(viewHolder.adapterPosition)
                     }
                     ItemTouchHelper.RIGHT ->{
                         Log.d("swipe","left")
+                        viewModel.deleteArticle(viewHolder.adapterPosition)
 
                     }
 
                 }
 
-                super.onSwiped(viewHolder, direction)
             }
         }
+
+        val touchHelper = ItemTouchHelper(swipeGesture)
+        touchHelper.attachToRecyclerView(binding.recyclerView)
 
         viewModel.isLoading.observe(this@MainActivity){
             if(it){

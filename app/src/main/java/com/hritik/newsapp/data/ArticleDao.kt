@@ -16,10 +16,10 @@ interface ArticleDao {
     @Query("DELETE FROM articles")
     suspend fun deleteAllArticles()
 
-    @Query("DELETE FROM articles WHERE title = :title")
-    suspend fun deleteArticle(title: String)
+    @Query("DELETE FROM articles WHERE id = :id")
+    suspend fun deleteArticle(id: Int)
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateArticle(article: Article)
+    @Query("UPDATE articles SET read = :isRead  WHERE id = :id")
+    suspend fun updateArticle(id: Int , isRead:  Boolean)
 
 }

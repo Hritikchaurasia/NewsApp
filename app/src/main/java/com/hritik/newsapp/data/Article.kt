@@ -6,9 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "articles")
 data class Article(
+        @PrimaryKey(autoGenerate = true)
+        val id:Int,
         val description: String,
         val publishedAt: String,
-        @PrimaryKey val title: String,
+        val title: String,
         val urlToImage: String,
         var read: Boolean = false
 )

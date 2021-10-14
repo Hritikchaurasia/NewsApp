@@ -1,5 +1,6 @@
 package com.hritik.newsapp.Adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ListAdapter
@@ -13,6 +14,8 @@ import com.hritik.newsapp.data.Article
 import com.hritik.newsapp.databinding.NewsitemBinding
 
 class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.MyArticleViewHolder>() {
+    val read = "READ"
+    val unread = "UNREAD"
 
     inner class MyArticleViewHolder(private val binding: NewsitemBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -27,6 +30,7 @@ class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.MyArticleViewHolder>() {
                 tvTitle.text = article.title
                 tvPublishedAt.text = article.publishedAt
                 tvDescription.text = article.description
+                tvRead.text = if(article.read) read else unread
             }
        }
         }

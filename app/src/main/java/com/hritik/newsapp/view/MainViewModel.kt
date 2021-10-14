@@ -36,4 +36,17 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun deleteArticle(articleId: Int){
+        viewModelScope.launch {
+            repository.deleteArticle(articleId)
+
+        }
+    }
+
+    fun readArticle(articleId: Int){
+        viewModelScope.launch {
+            repository.readArticle(articleId)
+        }
+    }
+
 }

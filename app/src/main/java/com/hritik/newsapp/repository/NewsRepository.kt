@@ -20,6 +20,16 @@ class NewsRepository @Inject constructor(
 ) {
     private val articleDao = db.getArticleDao()
 
+    suspend fun deleteArticle(articleId: Int) : Unit{
+        articleDao.deleteArticle(articleId)
+    }
+
+    suspend fun readArticle(articleId: Int) : Unit{
+
+            articleDao.updateArticle(articleId, true)
+
+    }
+
     fun getArticles() = networkBoundResource(
         query = {
             articleDao.getAllArticles()
